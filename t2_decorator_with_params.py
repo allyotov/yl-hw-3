@@ -5,7 +5,7 @@ from random import choice
 EAGLE_AND_TAILS = (0, 1)
 
 logger = logging.getLogger('__name__')
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 class run_with_delay(object):
 
@@ -20,11 +20,11 @@ class run_with_delay(object):
             t = self.start_sleep_time 
             logger.info('Начало работы')
             for n in range(1, self.call_count + 1):
-                if n > 1:
-                    if t < self.border_sleep_time:
-                        t = self.start_sleep_time * self.factor^(n)
-                    else:
-                        t = self.border_sleep_time
+                if t < self.border_sleep_time:
+                    t = self.start_sleep_time * self.factor ** (n)
+                else:
+                    t = self.border_sleep_time
+                logger.debug(t)
                 time.sleep(t)
                 result = func(*args)
                 logger.info('Запуск номер %s. Ожидание: %s.'
