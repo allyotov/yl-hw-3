@@ -21,7 +21,7 @@ class run_with_delay(object):
             logger.info('Начало работы')
             for n in range(1, self.call_count + 1):
                 if t < self.border_sleep_time:
-                    t = self.start_sleep_time * self.factor ** (n)
+                    t = self.start_sleep_time * self.factor ** n
                 else:
                     t = self.border_sleep_time
                 logger.debug(t)
