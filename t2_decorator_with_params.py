@@ -20,9 +20,8 @@ class run_with_delay(object):
             t = self.start_sleep_time 
             logger.info('Начало работы')
             for n in range(1, self.call_count + 1):
-                if t < self.border_sleep_time:
-                    t = self.start_sleep_time * self.factor ** n
-                else:
+                t = self.start_sleep_time * self.factor ** n
+                if t >= self.border_sleep_time:
                     t = self.border_sleep_time
                 logger.debug(t)
                 time.sleep(t)
@@ -33,7 +32,7 @@ class run_with_delay(object):
         return wrapped_f
 
 
-@run_with_delay(call_count=10, start_sleep_time=1, factor=2, border_sleep_time=60)
+@run_with_delay(call_count=10, start_sleep_time=1, factor=2, border_sleep_time=5)
 def cast_lots():
     return choice(EAGLE_AND_TAILS)
 
